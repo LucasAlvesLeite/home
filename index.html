@@ -3,185 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meus Projetos</title>
+    <title>Portfólio Interativo</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* Estilos personalizados para complementar o Tailwind CSS */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-            color: #f0f0f0;
-            overflow-x: hidden;
+            font-family: 'Inter', sans-serif;
+            background-color: #111827; /* Fundo escuro */
+            color: #E5E7EB; /* Texto claro */
         }
 
-        /* Estrelas */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: transparent url('https://www.transparenttextures.com/patterns/stardust.png') repeat;
-            opacity: 0.4;
-            z-index: -1;
+        /* --- Animação dos Blocos Giratórios --- */
+        .scrolling-blocks-container {
+            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
         }
 
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(22px) saturate(180%);
-            -webkit-backdrop-filter: blur(22px) saturate(180%);
-            border: 1px solid rgba(255, 255, 255, 0.25);
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.6);
-            position: relative;
-            overflow: hidden;
+        .scrolling-blocks .blocks-track {
+            animation: scroll 40s linear infinite;
         }
 
-        /* Brilho animado nas bordas */
-        .glass::before {
-            content: "";
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(from 0deg, rgba(255,255,255,0.5), transparent 60%, rgba(255,255,255,0.5));
-            animation: brilho 6s linear infinite;
-            border-radius: inherit;
-            pointer-events: none;
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+        
+        /* Pausa a animação no hover */
+        .scrolling-blocks:hover .blocks-track {
+            animation-play-state: paused;
         }
 
-        @keyframes brilho {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* --- Efeito de Flip nos Cards --- */
+        .card {
+            perspective: 1000px;
         }
 
-        header {
-            max-width: 1100px;
-            margin: 30px auto;
-            padding: 50px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            align-items: center;
-            position: relative;
+        .card-inner {
+            transition: transform 0.8s;
+            transform-style: preserve-3d;
         }
 
-        /* Efeito de circuitos no topo */
-        header::after {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-image: url('https://www.transparenttextures.com/patterns/circuits.png');
-            background-size: cover;
-            background-repeat: repeat;
-            opacity: 0.15;
-            pointer-events: none;
+        .card.is-flipped .card-inner {
+            transform: rotateY(180deg);
         }
 
-        header .texto h1 {
-            margin: 0;
-            font-size: 2.8em;
-            letter-spacing: 2px;
-        }
-        header .texto p {
-            font-size: 1.2em;
-            opacity: 0.85;
-            margin-top: 10px;
-        }
-        header .imagem img {
-            width: 100%;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
+        .card-front,
+        .card-back {
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
 
-        main {
-            max-width: 1000px;
-            margin: 40px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
+        .card-back {
+            transform: rotateY(180deg);
         }
-        .projeto {
-            padding: 25px;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .projeto:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 35px rgba(0,0,0,0.8);
-        }
-        .projeto h2 {
-            margin-top: 0;
-            font-size: 1.6em;
-            color: #ffffff;
-        }
-        .projeto p {
-            font-size: 1em;
-            line-height: 1.5;
-            opacity: 0.9;
-        }
-        a {
-            display: inline-block;
-            margin-top: 15px;
-            padding: 10px 18px;
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255,255,255,0.2);
-            color: #fff;
-            border-radius: 10px;
-            text-decoration: none;
-            transition: background 0.3s, border 0.3s;
-        }
-        a:hover {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255,255,255,0.4);
-        }
-
-        footer {
-            max-width: 1100px;
-            margin: 40px auto;
-            padding: 20px;
-            text-align: center;
+        
+        /* --- Destaque e transição da palavra dinâmica --- */
+        .palavra-destacada {
+            transition: opacity 0.3s ease-in-out;
         }
     </style>
 </head>
-<body>
-    <header class="glass">
-        <div class="texto">
-            <h1>Meus Projetos</h1>
-            <p>Bem-vindo ao meu portfólio! Aqui você encontrará alguns dos trabalhos que desenvolvi com dedicação e criatividade.</p>
-        </div>
-        <div class="imagem">
-            <img src="https://via.placeholder.com/400x300.png?text=Minha+Imagem" alt="Apresentação">
-        </div>
-    </header>
+<body class="bg-gray-900 text-gray-200">
 
-    <main>
-        <section class="projeto glass">
-            <h2>Projeto 1 - Site Pessoal</h2>
-            <p>Um site simples em HTML e CSS para apresentar meus trabalhos.</p>
-            <a href="#" target="_blank">Ver Projeto</a>
+    <div class="container mx-auto px-4 pt-24 pb-16"> <!-- Padding superior ajustado -->
+
+        <!-- 1. SEÇÃO DE TEXTO DINÂMICO -->
+        <section class="text-center mb-24">
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+                Construa em um fim de semana,
+                <br />
+                <span class="relative inline-block align-middle">
+                    <span class="palavra-destacada text-green-400">escale</span>
+                </span>
+                para milhões.
+            </h1>
+            <div class="icones-container flex justify-center items-center gap-6 mt-8">
+                <!-- Ícone 1 -->
+                <button data-text="lance" class="group flex flex-col items-center text-gray-400 hover:text-green-400 transition-colors">
+                    <svg class="h-8 w-8 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+                    <span class="font-medium">Lance</span>
+                </button>
+                <!-- Ícone 2 -->
+                <button data-text="hospede" class="group flex flex-col items-center text-gray-400 hover:text-green-400 transition-colors">
+                    <svg class="h-8 w-8 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>
+                    <span class="font-medium">Hospede</span>
+                </button>
+                <!-- Ícone 3 -->
+                <button data-text="dimensione" class="group flex flex-col items-center text-gray-400 hover:text-green-400 transition-colors">
+                     <svg class="h-8 w-8 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
+                    <span class="font-medium">Dimensione</span>
+                </button>
+            </div>
         </section>
 
-        <section class="projeto glass">
-            <h2>Projeto 2 - Aplicativo Web</h2>
-            <p>Aplicativo feito em JavaScript para gerenciar tarefas diárias.</p>
-            <a href="#" target="_blank">Ver Projeto</a>
+        <!-- 2. SEÇÃO DE BLOCOS GIRATÓRIOS -->
+        <section class="scrolling-blocks w-full overflow-hidden mb-24">
+            <div class="scrolling-blocks-container">
+                <div class="blocks-track flex w-max">
+                    <!-- Conteúdo original -->
+                    <div class="block bg-gray-800 rounded-lg p-6 mx-4 text-center w-64">
+                        <h3 class="font-bold text-lg text-green-400">Prêmio Awwwards</h3>
+                        <p class="text-sm text-gray-400">Melhor Design de UI/UX 2024</p>
+                    </div>
+                    <div class="block bg-gray-800 rounded-lg p-6 mx-4 text-center w-64">
+                        <h3 class="font-bold text-lg text-green-400">Cliente Satisfeito</h3>
+                        <p class="text-sm text-gray-400">"Incrível, superou as expectativas!" - TechCorp</p>
+                    </div>
+                    <div class="block bg-gray-800 rounded-lg p-6 mx-4 text-center w-64">
+                        <h3 class="font-bold text-lg text-green-400">Projeto Inovador</h3>
+                        <p class="text-sm text-gray-400">Lançamento da plataforma Analytica</p>
+                    </div>
+                    <div class="block bg-gray-800 rounded-lg p-6 mx-4 text-center w-64">
+                        <h3 class="font-bold text-lg text-green-400">Certificação WebDev</h3>
+                        <p class="text-sm text-gray-400">Especialista em Performance Web</p>
+                    </div>
+                    <div class="block bg-gray-800 rounded-lg p-6 mx-4 text-center w-64">
+                        <h3 class="font-bold text-lg text-green-400">App em Destaque</h3>
+                        <p class="text-sm text-gray-400">Featured na App Store Global</p>
+                    </div>
+                    <!-- Conteúdo duplicado para loop infinito -->
+                </div>
+            </div>
         </section>
 
-        <section class="projeto glass">
-            <h2>Projeto 3 - Análise de Dados</h2>
-            <p>Estudo de dados utilizando Python e bibliotecas como Pandas e Matplotlib.</p>
-            <a href="#" target="_blank">Ver Projeto</a>
-        </section>
-    </main>
+        <!-- 3. SEÇÃO DO GRID INTERATIVO -->
+        <section class="interactive-grid">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Projetos em Destaque</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Card 1 -->
+                <div class="card h-80 rounded-lg cursor-pointer">
+                    <div class="card-inner relative w-full h-full">
+                        <div class="card-front absolute w-full h-full bg-gray-800 border border-gray-700 rounded-lg p-6 flex flex-col justify-center items-center text-center">
+                            <h3 class="text-2xl font-bold text-green-400 mb-2">Plataforma de E-commerce</h3>
+                            <p class="text-gray-400">Uma solução completa para vendas online.</p>
+                            <p class="mt-4 text-xs text-gray-500">(Clique para ver detalhes)</p>
+                        </div>
+                        <div class="card-back absolute w-full h-full bg-green-500 rounded-lg p-6 flex flex-col justify-center text-center text-gray-900">
+                            <h4 class="text-xl font-bold mb-2">Tecnologias</h4>
+                            <p>React, Next.js, Tailwind CSS, Stripe API.</p>
+                            <a href="#" class="mt-4 font-bold underline hover:text-white transition-colors">Ver Case Study</a>
+                        </div>
+                    </div>
+                </div>
 
-    <footer class="glass">
-        <p>© 2025 - Meu Portfólio</p>
-    </footer>
+                <!-- Card 2 -->
+                <div class="card h-80 rounded-lg cursor-pointer">
+                    <div class="card-inner relative w-full h-full">
+                        <div class="card-front absolute w-full h-full bg-gray-800 border border-gray-700 rounded-lg p-6 flex flex-col justify-center items-center text-center">
+                            <h3 class="text-2xl font-bold text-green-400 mb-2">Aplicativo de Fitness</h3>
+                            <p class="text-gray-400">Monitore treinos e nutrição.</p>
+                            <p class="mt-4 text-xs text-gray-500">(Clique para ver detalhes)</p>
+                        </div>
+                        <div class="card-back absolute w-full h-full bg-green-500 rounded-lg p-6 flex flex-col justify-center text-center text-gray-900">
+                            <h4 class="text-xl font-bold mb-2">Tecnologias</h4>
+                            <p>React Native, Firebase, Chart.js.</p>
+                            <a href="#" class="mt-4 font-bold underline hover:text-white transition-colors">Ver no GitHub</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="card h-80 rounded-lg cursor-pointer">
+                    <div class="card-inner relative w-full h-full">
+                        <div class="card-front absolute w-full h-full bg-gray-800 border border-gray-700 rounded-lg p-6 flex flex-col justify-center items-center text-center">
+                            <h3 class="text-2xl font-bold text-green-400 mb-2">Dashboard de Análise</h3>
+                            <p class="text-gray-400">Visualização de dados em tempo real.</p>
+                            <p class="mt-4 text-xs text-gray-500">(Clique para ver detalhes)</p>
+                        </div>
+                        <div class="card-back absolute w-full h-full bg-green-500 rounded-lg p-6 flex flex-col justify-center text-center text-gray-900">
+                            <h4 class="text-xl font-bold mb-2">Tecnologias</h4>
+                            <p>Vue.js, D3.js, Node.js, WebSocket.</p>
+                            <a href="#" class="mt-4 font-bold underline hover:text-white transition-colors">Ver Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- LÓGICA DO TEXTO DINÂMICO ---
+            const palavraDestacada = document.querySelector('.palavra-destacada');
+            const icones = document.querySelectorAll('.icones-container button');
+
+            icones.forEach(icon => {
+                icon.addEventListener('mouseover', () => { // Alterado de 'click' para 'mouseover'
+                    const novoTexto = icon.getAttribute('data-text');
+                    
+                    // Evita que a animação dispare repetidamente se o mouse não sair do ícone
+                    if (palavraDestacada.textContent === novoTexto) return;
+
+                    // Efeito de fade out
+                    palavraDestacada.style.opacity = '0';
+
+                    setTimeout(() => {
+                        palavraDestacada.textContent = novoTexto;
+                        // Efeito de fade in
+                        palavraDestacada.style.opacity = '1';
+                    }, 300); // Deve corresponder à duração da transição do CSS
+                });
+            });
+
+
+            // --- LÓGICA DOS BLOCOS GIRATÓRIOS (DUPLICAÇÃO) ---
+            const track = document.querySelector('.blocks-track');
+            // Duplica o conteúdo para criar o efeito de loop infinito
+            track.innerHTML += track.innerHTML;
+
+
+            // --- LÓGICA DO FLIP DOS CARDS ---
+            const cards = document.querySelectorAll('.card');
+            cards.forEach(card => {
+                card.addEventListener('click', () => {
+                    card.classList.toggle('is-flipped');
+                });
+            });
+
+        });
+    </script>
+
 </body>
 </html>
+

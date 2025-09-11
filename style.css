@@ -5,7 +5,8 @@ body {
   --dark0: #202020;
   --dark1: #0E0F15;
   --dark2: #332e2e;
-  --dark3: #25180f;
+  --dark3: #41340a;
+  --letras:#a36e48;
   --dark4: #B6FF00;
   --border: #0E0F15;
   --light1: #eee;
@@ -433,7 +434,7 @@ body {
 
 .choose-banner-svg-1 text {
   font: 800 15px var(--title);
-  fill: var(--dark3);
+  fill: var(--letras);
   text-transform: uppercase;
   letter-spacing: 5.3px;
   line-height: 10px;
@@ -450,7 +451,7 @@ body {
 
 .choose-banner-svg-2 text {
   font: 900 25px var(--title);
-  fill: var(--dark3);
+  fill: var(--letras);
   text-transform: uppercase;
   letter-spacing: 9.8px;
   line-height: 20px;

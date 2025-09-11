@@ -1,235 +1,179 @@
 <!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfólio Interativo</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        /* Estilos personalizados para complementar o Tailwind CSS */
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #111827; /* Fundo escuro */
-            color: #E5E7EB; /* Texto claro */
-        }
 
-        /* --- Animação dos Blocos Giratórios --- */
-        .scrolling-blocks-container {
-            -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-            mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
-        }
 
-        .scrolling-blocks .blocks-track {
-            animation: scroll 40s linear infinite;
-        }
+Imagine coding well. That could never be me.<div class="choose">
 
-        @keyframes scroll {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
-        
-        /* Pausa a animação no hover */
-        .scrolling-blocks:hover .blocks-track {
-            animation-play-state: paused;
-        }
 
-        /* --- Efeito de Flip nos Cards --- */
-        .card {
-            perspective: 1000px;
-        }
+<div class="choose-menu">
+  <div class="choose-menu-links">
+    <a href=""><i class="ph-house-light"></i></a>
+<!--
+    <a href=""><i class="ph-magnifying-glass-plus-fill"></i>search</a>
+    <a href=""><i class="ph-users-three-fill"></i>members</a>
+    <a href=""><i class="ph-gear-six-fill"></i>admin</a>
+    <a href=""><i class="ph-user-circle-fill"></i>profile</a>
+    <a href=""><i class="ph-paper-plane-tilt-fill"></i>messages</a>
+    <a href=""><i class="ph-discord-logo-fill"></i>discord</a>
+    <a href=""><i class="ph-pencil-simple-fill"></i>recent</a>
+-->
+  </div>
+</div>
 
-        .card-inner {
-            transition: transform 0.8s;
-            transform-style: preserve-3d;
-        }
 
-        .card.is-flipped .card-inner {
-            transform: rotateY(180deg);
-        }
-
-        .card-front,
-        .card-back {
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-        }
-
-        .card-back {
-            transform: rotateY(180deg);
-        }
-        
-        /* --- Destaque e transição da palavra dinâmica --- */
-        .palavra-destacada {
-            transition: opacity 0.3s ease-in-out;
-        }
-    </style>
-</head>
-<body class="bg-gray-900 text-gray-200">
-
-    <div class="container mx-auto px-4 pt-24 pb-16"> <!-- Padding superior ajustado -->
-
-        <!-- 1. SEÇÃO DE TEXTO DINÂMICO -->
-        <section class="text-center mb-24">
-            <h1 class="text-4xl md:text-6xl font-bold leading-tight">
-                Construa em um fim de semana,
-                <br />
-                <span class="relative inline-block align-middle">
-                    <span class="palavra-destacada text-green-400">escale</span>
-                </span>
-                para milhões.
-            </h1>
-            <div class="icones-container flex justify-center items-center gap-6 mt-8">
-                <!-- Ícone 1 -->
-                <button data-text="lance" class="group flex flex-col items-center text-gray-400 hover:text-green-400 transition-colors">
-                    <svg class="h-8 w-8 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-                    <span class="font-medium">Lance</span>
-                </button>
-                <!-- Ícone 2 -->
-                <button data-text="hospede" class="group flex flex-col items-center text-gray-400 hover:text-green-400 transition-colors">
-                    <svg class="h-8 w-8 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" /></svg>
-                    <span class="font-medium">Hospede</span>
-                </button>
-                <!-- Ícone 3 -->
-                <button data-text="dimensione" class="group flex flex-col items-center text-gray-400 hover:text-green-400 transition-colors">
-                     <svg class="h-8 w-8 mb-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>
-                    <span class="font-medium">Dimensione</span>
-                </button>
-            </div>
-        </section>
-
-        <!-- 2. SEÇÃO DE BLOCOS GIRATÓRIOS -->
-        <section class="scrolling-blocks w-full overflow-hidden mb-24">
-            <div class="scrolling-blocks-container">
-                <div class="blocks-track flex w-max">
-                    <!-- Conteúdo original -->
-                    <div class="block bg-gray-800 rounded-lg p-6 mx-4 text-center w-64">
-                        <h3 class="font-bold text-lg text-green-400">Prêmio Awwwards</h3>
-                        <p class="text-sm text-gray-400">Melhor Design de UI/UX 2024</p>
-                    </div>
-                    <div class="block bg-gray-800 rounded-lg p-6 mx-4 text-center w-64">
-                        <h3 class="font-bold text-lg text-green-400">Cliente Satisfeito</h3>
-                        <p class="text-sm text-gray-400">"Incrível, superou as expectativas!" - TechCorp</p>
-                    </div>
-                    <div class="block bg-gray-800 rounded-lg p-6 mx-4 text-center w-64">
-                        <h3 class="font-bold text-lg text-green-400">Projeto Inovador</h3>
-                        <p class="text-sm text-gray-400">Lançamento da plataforma Analytica</p>
-                    </div>
-                    <div class="block bg-gray-800 rounded-lg p-6 mx-4 text-center w-64">
-                        <h3 class="font-bold text-lg text-green-400">Certificação WebDev</h3>
-                        <p class="text-sm text-gray-400">Especialista em Performance Web</p>
-                    </div>
-                    <div class="block bg-gray-800 rounded-lg p-6 mx-4 text-center w-64">
-                        <h3 class="font-bold text-lg text-green-400">App em Destaque</h3>
-                        <p class="text-sm text-gray-400">Featured na App Store Global</p>
-                    </div>
-                    <!-- Conteúdo duplicado para loop infinito -->
-                </div>
-            </div>
-        </section>
-
-        <!-- 3. SEÇÃO DO GRID INTERATIVO -->
-        <section class="interactive-grid">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">Projetos em Destaque</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                
-                <!-- Card 1 -->
-                <div class="card h-80 rounded-lg cursor-pointer">
-                    <div class="card-inner relative w-full h-full">
-                        <div class="card-front absolute w-full h-full bg-gray-800 border border-gray-700 rounded-lg p-6 flex flex-col justify-center items-center text-center">
-                            <h3 class="text-2xl font-bold text-green-400 mb-2">Plataforma de E-commerce</h3>
-                            <p class="text-gray-400">Uma solução completa para vendas online.</p>
-                            <p class="mt-4 text-xs text-gray-500">(Clique para ver detalhes)</p>
-                        </div>
-                        <div class="card-back absolute w-full h-full bg-green-500 rounded-lg p-6 flex flex-col justify-center text-center text-gray-900">
-                            <h4 class="text-xl font-bold mb-2">Tecnologias</h4>
-                            <p>React, Next.js, Tailwind CSS, Stripe API.</p>
-                            <a href="#" class="mt-4 font-bold underline hover:text-white transition-colors">Ver Case Study</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="card h-80 rounded-lg cursor-pointer">
-                    <div class="card-inner relative w-full h-full">
-                        <div class="card-front absolute w-full h-full bg-gray-800 border border-gray-700 rounded-lg p-6 flex flex-col justify-center items-center text-center">
-                            <h3 class="text-2xl font-bold text-green-400 mb-2">Aplicativo de Fitness</h3>
-                            <p class="text-gray-400">Monitore treinos e nutrição.</p>
-                            <p class="mt-4 text-xs text-gray-500">(Clique para ver detalhes)</p>
-                        </div>
-                        <div class="card-back absolute w-full h-full bg-green-500 rounded-lg p-6 flex flex-col justify-center text-center text-gray-900">
-                            <h4 class="text-xl font-bold mb-2">Tecnologias</h4>
-                            <p>React Native, Firebase, Chart.js.</p>
-                            <a href="#" class="mt-4 font-bold underline hover:text-white transition-colors">Ver no GitHub</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="card h-80 rounded-lg cursor-pointer">
-                    <div class="card-inner relative w-full h-full">
-                        <div class="card-front absolute w-full h-full bg-gray-800 border border-gray-700 rounded-lg p-6 flex flex-col justify-center items-center text-center">
-                            <h3 class="text-2xl font-bold text-green-400 mb-2">Dashboard de Análise</h3>
-                            <p class="text-gray-400">Visualização de dados em tempo real.</p>
-                            <p class="mt-4 text-xs text-gray-500">(Clique para ver detalhes)</p>
-                        </div>
-                        <div class="card-back absolute w-full h-full bg-green-500 rounded-lg p-6 flex flex-col justify-center text-center text-gray-900">
-                            <h4 class="text-xl font-bold mb-2">Tecnologias</h4>
-                            <p>Vue.js, D3.js, Node.js, WebSocket.</p>
-                            <a href="#" class="mt-4 font-bold underline hover:text-white transition-colors">Ver Demo</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
+<div class="choose-side">
+  <div class="choose-side-back"><div></div></div>
+  <div class="choose-side-front">
+    <div class="choose-side-title" id="choose-fitty">
+      Hi, my name is
+      <a href="">Lucas</a>
     </div>
+    <div class="choose-side-img">
+      <div style="background-image:url(https://www.ebooksbrasil.org/eLibris/imagens/purgatorio20.jpg);"></div></div>
+    <div class="choose-side-alerts">
+      <div class="choose-side-svg" style="max-width:200px;">
+        <svg viewBox="0 0 200 200" width="100%" height="auto" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+          <path id="chooseText0"
+                d="M150 100 A50 50 0 1 1 50 100 A50 50 0 1 1 150 100"
+                fill="none" stroke="transparent" />
+          <text>
+            <textPath href="#chooseText0" startOffset="0%">
+              Physics ● Code ● Art ●
+            </textPath>
+          </text>
+        </svg>
+      </div>
+      <div class="choose-side-alerts-1">
+        <a href="">Physics Graduate</a>
+        <a href="">Risk analyst</a>
+        <div>requiring your<br>attention</div>
+      </div>
+    </div>
+    <div class="choose-side-nav" id="choose-fitty2">
+      <h1>Projects</h1>
+      <div>
+      <a href="">Text to Speech</a>
+      <a href="">Literature</a>
+      <a href="">Machine Learning Basics</a>
+      <a href="">Desing</a>
+      <a href="">Quantum Computing</a>
+      <a href="">claims</a>
+      <a href="">site templates</a>
+      <a href="">advertising</a>
+      <a href="">affiliation</a>
+      <a href="">moderation request</a>
+      </div>
+    </div>
+    
+  </div>
+  
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
+<div class="choose-banner">
+  <div class="choose-banner-back"><div></div></div>
+  <div class="choose-banner-img"><div></div></div>
+  
+  <div class="choose-banner-svg-1">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="600px" width="600px">
+	  <path id="chooseText1" d="M 0 200 A 50 50 0 1 1 400 200 A 50 50 0 1 1 0 200 " transform="translate(100,100)" fill="none"/>    
+	  <text>
+      <textPath xlink:href="#chooseText1">
+        But how can one believe in a thing that has never been presented him?<tspan fill=#88899400>----</tspan> <tspan fill=#888994>GRIND THE GAP</tspan>
+      </textPath>
+    </text>
+    </svg>
+  </div>
+  <div class="choose-banner-svg-2">
+    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="900px" width="900px">
+	  <path id="chooseText2" d="M 0 350 A 50 50 0 1 1 700 350 A 50 50 0 1 1 0 350 " transform="translate(100,100)" fill="none"/>    
+	  <text>
+      <textPath xlink:href="#chooseText2">
+        As Virgil in <tspan fill="red">Inferno</tspan>, one can be condemned for the lack of faith in something he's never knew.
+      </textPath>
+    </text>
+    </svg>
+  </div>
+  
+  <div class="choose-banner-title-1"><div class="choose-banner-title">
+    <div>choose</div>
+    <span></span>
+    <div class="choose-banner-title-2">weapon</div>
+    <div class="choose-banner-title-3">an original <b>dark academia</b><br>animanga roleplay</div>
+  </div></div>
+</div>
 
-            // --- LÓGICA DO TEXTO DINÂMICO ---
-            const palavraDestacada = document.querySelector('.palavra-destacada');
-            const icones = document.querySelectorAll('.icones-container button');
+<div class="choose-header">
+  
+  <div class="choose-nav">
+    <i class="ph-house-fill"></i>
+    <a href="">choose your weapon</a>
+    <a href="">category name</a>
+    <a href="">board name</a>
+    <a href="">thread name</a>
+  </div>
+  
+  <div class="choose-header-welcome">
+    <div class="choose-header-welcome-title"><span>breathe it in</span>
+      breathe it in</div>
+    <div class="choose-header-welcome-blurb">
+  The word hurts, the word hurts in water, in water. The word hurts, the word hurts in water, in water. Material slowly unwinds as I leave feathers behind for your love, for your lover to find. Warm hands wrapped in blue linen from Torrington for your love, for your lover to find. Wild rose - Jericho sun - arid as stone for your love, for your lover to find. Aorta: tattoo the artery with acute artistry for your love, for your lover to find. Breathing, breathing underwater. Breathing, breathing underwater. Very good brea-breathing, breathing underwater.<br><br>
+  
+  Pleasure melting your snowflake of lace down your face for your love, for your lover to find. I could call your demons aside, soak them in chamomile for your love, for your lover to find. Breathing, breathing underwater. Breathing, breathing underwater. I could brea-breathe, breathe underwater to find, find, find - for your love, for your lover to find. For your love, for your lover to find.
+  </div></div>
+  <div class="choose-header-event">
+    <div class="choose-header-svg">
+      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="200px" width="200px">
+	    <path id="chooseText4" d="M 0 75 A 50 50 0 1 1 150 75 A 50 50 0 1 1 0 75 " transform="translate(25,25)" fill="none"/>    
+	    <text>
+        <textPath xlink:href="#chooseText4">
+        unprecendented activity at something academy ●
+        </textPath>
+      </text>
+      </svg>
+    </div>
+    <a href="" class="choose-header-event-1">
+      <b>event name</b>
+      our newest event</a>    
+  </div>
+  <div class="choose-header-staff">
+    <a href="" title="staff name"><div><img src="https://i.ibb.co/jZPm1yK/14.png"></div></a>
+    <a href="" title="staff name"><div><img src="https://i.ibb.co/2cRgzbP/13.png"></div></a>
+    <a href="" title="staff name"><div><img src="https://i.ibb.co/gdJfgnJ/24.png"></div></a>
+    <a href="" title="staff name"><div><img src="https://i.ibb.co/H42vxcP/Surtr27.png"></div></a>
+  </div>
+  
+</div>
+  
+</div>
+<div class="choose-wrapper">
 
-            icones.forEach(icon => {
-                icon.addEventListener('mouseover', () => { // Alterado de 'click' para 'mouseover'
-                    const novoTexto = icon.getAttribute('data-text');
-                    
-                    // Evita que a animação dispare repetidamente se o mouse não sair do ícone
-                    if (palavraDestacada.textContent === novoTexto) return;
 
-                    // Efeito de fade out
-                    palavraDestacada.style.opacity = '0';
+  
+  
+  
+  <div class="choose-user GID-4">
+    <div class="choose-user-top">
+      <div class="choose-user-top-back"></div>
+      <div class="choose-user-name">dick grayson</div>
+    </div>
+    <div class="choose-user-av">
+      <div class="choose-user-av-img"><div></div></div>
+    </div>
+    <div class="choose-user-bulk">
+      Imagine coding well. That could never be me.
+    </div>
+    <div class="choose-user-back">
+      <div class="choose-user-bot-back"></div>
+      <div class="choose-user-bot-back2"></div></div>
+  </div>
+  
+  
+  
+  
 
-                    setTimeout(() => {
-                        palavraDestacada.textContent = novoTexto;
-                        // Efeito de fade in
-                        palavraDestacada.style.opacity = '1';
-                    }, 300); // Deve corresponder à duração da transição do CSS
-                });
-            });
+</div>
 
 
-            // --- LÓGICA DOS BLOCOS GIRATÓRIOS (DUPLICAÇÃO) ---
-            const track = document.querySelector('.blocks-track');
-            // Duplica o conteúdo para criar o efeito de loop infinito
-            track.innerHTML += track.innerHTML;
-
-
-            // --- LÓGICA DO FLIP DOS CARDS ---
-            const cards = document.querySelectorAll('.card');
-            cards.forEach(card => {
-                card.addEventListener('click', () => {
-                    card.classList.toggle('is-flipped');
-                });
-            });
-
-        });
-    </script>
-
-</body>
-</html>
-
+<link href="style.css" rel="stylesheet">
+<script src="https://code.jquery.com/jquery-1.7.2.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fitty/2.3.6/fitty.min.js"></script>
+<script src="https://unpkg.com/phosphor-icons"></script>
